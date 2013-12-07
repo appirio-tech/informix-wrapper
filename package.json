@@ -1,0 +1,31 @@
+{
+  "name": "informix-wrapper",
+  "version": "0.1.0",
+  "description": "Node Module JDBC Informix wrapper",
+  "main": "index.js",
+  "dependencies": {
+    "java": "~0.2.9"
+  },
+  "scripts": {
+    "test": "nodeunit test"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "directories": {
+    "doc": ".",
+    "lib": "lib"
+  },
+  "keywords": [
+    "node",
+    "jdbc",
+    "wrapper"
+  ],
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "author": "Paulo Vitor Magacho da Silva",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}
