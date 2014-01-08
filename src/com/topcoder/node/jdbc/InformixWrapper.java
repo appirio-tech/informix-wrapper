@@ -35,7 +35,7 @@ public class InformixWrapper {
     /**
      * Object to build the result JSON string.
      */
-    private static final Gson GSON_OBJECT = new GsonBuilder().setDateFormat(DATE_FORMAT).create();
+    private static final Gson GSON_OBJECT = new GsonBuilder().addDeserializationExclusionStrategy(new SuperclassExclusionStrategy()).addSerializationExclusionStrategy(new SuperclassExclusionStrategy()).setDateFormat(DATE_FORMAT).create();
 
     /**
      * Object used to parse date in iso8601 format.
