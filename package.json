@@ -23,7 +23,15 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "author": "Paulo Vitor Magacho da Silva",
+  "author": {
+    "name": "Paulo Vitor Magacho da Silva"
+  },
   "license": "MIT",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "readme": "informix-wrapper\n================\n\nNode JDBC wrapper for Informix Driver\n",
+  "bugs": {
+    "url": "https://github.com/coderReview/informix-wrapper/issues"
+  },
+  "_id": "informix-wrapper@0.1.1",
+  "_from": "informix-wrapper@~0.1.0"
 }
