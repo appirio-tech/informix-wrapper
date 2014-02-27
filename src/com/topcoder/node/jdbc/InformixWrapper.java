@@ -1,8 +1,13 @@
 /**
- * Copyright (C) 2013 TopCoder Inc., All Rights Reserved.
+ * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
  */
 package com.topcoder.node.jdbc;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.StringReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,15 +21,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
 /**
  * A class to handle query execution.
  *
- * @author pvmagacho
- * @version 1.0
+ * <p>
+ *     Version 1.1(Module Assembly - TC API - Support Text Field Insertion and Testing version 1.0) change log
+ *     <li>
+ *         Add 'text' type support for {@link #getPreparedStatement(String, String)}.
+ *     </li>
+ * </p>
+ *
+ * @author pvmagacho, OlinaRuan
+ * @version 1.1
  */
 public class InformixWrapper {
     /**
@@ -81,21 +89,21 @@ public class InformixWrapper {
             }
 
             rows = getRows(resultSet);
-		} catch (SQLException se) {
-			if (resultSet != null) {
+        } catch (SQLException se) {
+            if (resultSet != null) {
                 resultSet.close();
             }
             if (st != null) {
                 st.close();
             }
-			if (connection != null)
-			{
-				if (!connection.getAutoCommit()) {
-					connection.rollback();
-				}
-				connection.close();
-			}
-			throw se;
+            if (connection != null)
+            {
+                if (!connection.getAutoCommit()) {
+                    connection.rollback();
+                }
+                connection.close();
+            }
+            throw se;
         } finally {
             if (resultSet != null) {
                 resultSet.close();
@@ -135,21 +143,21 @@ public class InformixWrapper {
 
             rows = getRows(resultSet);
         } catch (SQLException se) {
-			if (resultSet != null) {
+            if (resultSet != null) {
                 resultSet.close();
             }
             if (st != null) {
                 st.close();
             }
-			if (connection != null)
-			{
-				if (!connection.getAutoCommit()) {
-					connection.rollback();
-				}
-				connection.close();
-			}
-			throw se;
-		} finally {
+            if (connection != null)
+            {
+                if (!connection.getAutoCommit()) {
+                    connection.rollback();
+                }
+                connection.close();
+            }
+            throw se;
+        } finally {
             if (resultSet != null) {
                 resultSet.close();
             }
@@ -182,15 +190,15 @@ public class InformixWrapper {
             if (st != null) {
                 st.close();
             }
-			if (connection != null)
-			{
-				if (!connection.getAutoCommit()) {
-					connection.rollback();
-				}
-				connection.close();
-			}
-			throw se;
-		}finally {
+            if (connection != null)
+            {
+                if (!connection.getAutoCommit()) {
+                    connection.rollback();
+                }
+                connection.close();
+            }
+            throw se;
+        }finally {
             if (st != null) {
                 st.close();
             }
@@ -219,19 +227,19 @@ public class InformixWrapper {
             st = this.getPreparedStatement(sql, jsonParams);
             count = st.executeUpdate();
         } catch (SQLException se) {
-			
+
             if (st != null) {
                 st.close();
             }
-			if (connection != null)
-			{
-				if (!connection.getAutoCommit()) {
-					connection.rollback();
-				}
-				connection.close();
-			}
-			throw se;
-		}finally {
+            if (connection != null)
+            {
+                if (!connection.getAutoCommit()) {
+                    connection.rollback();
+                }
+                connection.close();
+            }
+            throw se;
+        }finally {
             if (st != null) {
                 st.close();
             }
@@ -276,6 +284,13 @@ public class InformixWrapper {
     /**
      * Get the prepared statement with the parameters set.
      *
+     * <p>
+     *     Version 1.1 change log:
+     *     <ol>
+     *         <li>Add text type</li>
+     *     </ol>
+     * </p>
+     *
      * @param sql
      *            the SQL string to be executed
      * @param jsonParams
@@ -289,7 +304,7 @@ public class InformixWrapper {
         PreparedStatement st = this.connection.prepareStatement(sql);
 
         List<Map<String, String>> parameters = GSON_OBJECT.fromJson(jsonParams,
-                                    new TypeToken<List<Map<String, String>>>(){}.getType());
+                new TypeToken<List<Map<String, String>>>(){}.getType());
         for (int i = 0; i < parameters.size(); i++) {
             Map<String, String> map = parameters.get(i);
             String type = map.get("type");
@@ -304,6 +319,8 @@ public class InformixWrapper {
                 st.setDate(i + 1, new java.sql.Date(parsed.getTime()));
             } else if (type.toLowerCase().equals("boolean")) {
                 st.setBoolean(i + 1, Boolean.parseBoolean(value));
+            } else  if (type.toLowerCase().equals("text")) {
+                st.setCharacterStream(i + 1, new StringReader(value), value.length());
             } else {
                 st.setString(i + 1, value);
             }
