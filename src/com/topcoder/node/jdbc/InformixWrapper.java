@@ -320,7 +320,7 @@ public class InformixWrapper {
             } else if (type.toLowerCase().equals("boolean")) {
                 st.setBoolean(i + 1, Boolean.parseBoolean(value));
             } else  if (type.toLowerCase().equals("text")) {
-                st.setCharacterStream(i + 1, new StringReader(value));
+                st.setCharacterStream(i + 1, new StringReader(value), value.length());
             } else {
                 st.setString(i + 1, value);
             }
