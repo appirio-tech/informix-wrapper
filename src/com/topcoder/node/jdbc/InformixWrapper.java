@@ -33,7 +33,7 @@ import java.util.Map;
  *     <li>Modified the date format.</li>
  * </p>
  *
- * @author pvmagacho, OlinaRuan， LazyChild
+ * @author pvmagacho, OlinaRuan, LazyChild
  * @version 1.2
  */
 public class InformixWrapper {
