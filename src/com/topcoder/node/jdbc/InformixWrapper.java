@@ -29,16 +29,18 @@ import java.util.Map;
  *     <li>
  *         Add 'text' type support for {@link #getPreparedStatement(String, String)}.
  *     </li>
+ *     Version 1.2
+ *     <li>Modified the date format.</li>
  * </p>
  *
- * @author pvmagacho, OlinaRuan
- * @version 1.1
+ * @author pvmagacho, OlinaRuan, LazyChild
+ * @version 1.2
  */
 public class InformixWrapper {
     /**
      * The date iso8601 format.
      */
-    private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS z";
 
     /**
      * Object to build the result JSON string.
