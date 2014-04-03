@@ -40,7 +40,7 @@ public class InformixWrapper {
     /**
      * The date iso8601 format.
      */
-    private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS z";
+    private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 
     /**
      * Object to build the result JSON string.
