@@ -92,27 +92,31 @@ public class InformixWrapper {
 
             rows = getRows(resultSet);
         } catch (SQLException se) {
-            if (resultSet != null) {
-                resultSet.close();
-            }
-            if (st != null) {
-                st.close();
-            }
-            if (connection != null)
-            {
-                if (!connection.getAutoCommit()) {
-                    connection.rollback();
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
                 }
-                connection.close();
-            }
+                if (st != null) {
+                    st.close();
+                }
+                if (connection != null)
+                {
+                    if (!connection.getAutoCommit()) {
+                        connection.rollback();
+                    }
+                    connection.close();
+                }
+            } catch (Exception e) {}
             throw se;
         } finally {
-            if (resultSet != null) {
-                resultSet.close();
-            }
-            if (st != null) {
-                st.close();
-            }
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (st != null) {
+                    st.close();
+                }
+            } catch (Exception e) {}
         }
 
         return GSON_OBJECT.toJson(rows);
@@ -145,27 +149,31 @@ public class InformixWrapper {
 
             rows = getRows(resultSet);
         } catch (SQLException se) {
-            if (resultSet != null) {
-                resultSet.close();
-            }
-            if (st != null) {
-                st.close();
-            }
-            if (connection != null)
-            {
-                if (!connection.getAutoCommit()) {
-                    connection.rollback();
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
                 }
-                connection.close();
-            }
+                if (st != null) {
+                    st.close();
+                }
+                if (connection != null)
+                {
+                    if (!connection.getAutoCommit()) {
+                        connection.rollback();
+                    }
+                    connection.close();
+                }
+            } catch (Exception e) {}
             throw se;
         } finally {
-            if (resultSet != null) {
-                resultSet.close();
-            }
-            if (st != null) {
-                st.close();
-            }
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (st != null) {
+                    st.close();
+                }
+            } catch (Exception e) {}
         }
 
         return GSON_OBJECT.toJson(rows);
@@ -189,21 +197,25 @@ public class InformixWrapper {
             st = this.connection.createStatement();
             count = st.executeUpdate(sql);
         } catch (SQLException se) {
-            if (st != null) {
-                st.close();
-            }
-            if (connection != null)
-            {
-                if (!connection.getAutoCommit()) {
-                    connection.rollback();
+            try {
+                if (st != null) {
+                    st.close();
                 }
-                connection.close();
-            }
+                if (connection != null)
+                {
+                    if (!connection.getAutoCommit()) {
+                        connection.rollback();
+                    }
+                    connection.close();
+                }
+            } catch (Exception e) {}
             throw se;
         }finally {
-            if (st != null) {
-                st.close();
-            }
+            try {
+                if (st != null) {
+                    st.close();
+                }
+            } catch (Exception e) {}
         }
 
         return count;
@@ -229,22 +241,25 @@ public class InformixWrapper {
             st = this.getPreparedStatement(sql, jsonParams);
             count = st.executeUpdate();
         } catch (SQLException se) {
-
-            if (st != null) {
-                st.close();
-            }
-            if (connection != null)
-            {
-                if (!connection.getAutoCommit()) {
-                    connection.rollback();
+            try {
+                if (st != null) {
+                    st.close();
                 }
-                connection.close();
-            }
-            throw se;
+                if (connection != null)
+                {
+                    if (!connection.getAutoCommit()) {
+                        connection.rollback();
+                    }
+                    connection.close();
+                }
+                throw se;
+            } catch (Exception e) {}
         }finally {
-            if (st != null) {
-                st.close();
-            }
+            try {
+                if (st != null) {
+                    st.close();
+                }
+            } catch (Exception e) {}
         }
 
         return count;
