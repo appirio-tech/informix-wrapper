@@ -31,12 +31,10 @@ import java.util.Map;
  *     </li>
  *     Version 1.2
  *     <li>Modified the date format.</li>
- *     Version 1.3
- *     <li>Made 'type' optional.</li>
  * </p>
  *
- * @author pvmagacho, OlinaRuan, LazyChild, pvmagacho
- * @version 1.3
+ * @author pvmagacho, OlinaRuan, LazyChild
+ * @version 1.2
  */
 public class InformixWrapper {
     /**
@@ -326,7 +324,7 @@ public class InformixWrapper {
                 new TypeToken<List<Map<String, String>>>(){}.getType());
         for (int i = 0; i < parameters.size(); i++) {
             Map<String, String> map = parameters.get(i);
-            String type = map.getOrDefault("type", "string");
+            String type = map.get("type");
             String value = map.get("value");
 
             if (type.toLowerCase().equals("int")) {
