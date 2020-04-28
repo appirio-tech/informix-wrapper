@@ -1,14 +1,14 @@
 {
   "name": "informix-wrapper",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Node Module JDBC Informix wrapper",
   "main": "index.js",
   "dependencies": {
-    "java": ">=0.2.2"
+    "java": "^0.12.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/coderReview/informix-wrapper.git"
+    "url": "https://github.com/appirio-tech/informix-wrapper.git"
   },
   "directories": {
     "doc": ".",
@@ -21,7 +21,7 @@
     "wrapper"
   ],
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=10.0.0"
   },
   "author": {
     "name": "Paulo Vitor Magacho da Silva"
@@ -30,8 +30,8 @@
   "readmeFilename": "README.md",
   "readme": "informix-wrapper\n================\n\nNode JDBC wrapper for Informix Driver\n",
   "bugs": {
-    "url": "https://github.com/coderReview/informix-wrapper/issues"
+    "url": "https://github.com/appirio-tech/informix-wrapper/issues"
   },
-  "_id": "informix-wrapper@0.1.1",
-  "_from": "informix-wrapper@~0.1.0"
+  "_id": "informix-wrapper@1.0.0",
+  "_from": "informix-wrapper@~1.0.0"
 }
