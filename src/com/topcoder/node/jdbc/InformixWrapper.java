@@ -255,13 +255,13 @@ public class InformixWrapper {
                     connection.close();
                 }
                 throw se;
-            } catch (Exception e) {}
+            } catch (Exception e) { throw e; }
         }finally {
             try {
                 if (st != null) {
                     st.close();
                 }
-            } catch (Exception e) {}
+            } catch (Exception e) { throw e; }
         }
 
         return count;
